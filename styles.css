@@ -15,6 +15,11 @@
   --line: #dad6cb;
   --line-strong: #c3bfae;
 
+  --grad-1: #e9f1fb;
+  --grad-2: #f4f3ee;
+  --glow-blue: rgba(29, 53, 87, 0.12);
+  --glow-gold: rgba(184, 134, 60, 0.07);
+
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
@@ -31,12 +36,31 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
+  background: linear-gradient(165deg, var(--grad-1) 0%, var(--grad-2) 45%, var(--grad-1) 100%);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--sans);
   font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(1100px 560px at 85% -8%, var(--glow-blue), transparent 60%),
+    radial-gradient(900px 520px at -10% 105%, var(--glow-gold), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+header, section, footer {
+  position: relative;
+  z-index: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
